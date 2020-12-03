@@ -3,6 +3,11 @@ variable "aws_region" {
   default = "eu-west-2"
 }
 
+variable "panos_version" {
+  type    = string
+  default = "9.1.0"
+}
+
 variable "db_table_name" {
   type    = string
   default = "terraform-learn"
