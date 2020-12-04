@@ -214,11 +214,11 @@ resource "aws_nat_gateway" "gw" {
         aws_internet_gateway.pavm-igw
     ]
 }
-resource "aws_route" "gw-route" {
+/*resource "aws_route" "gw-route" {
     route_table_id = aws_route_table.mgmt-routetable.id
     destination_cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.gw.id
-}
+}*/
 
 
 # Palo Alto Networks VM-Series
