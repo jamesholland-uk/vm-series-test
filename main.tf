@@ -223,8 +223,8 @@ resource "aws_route" "gw-route" {
 
 # Palo Alto Networks VM-Series
 resource "aws_instance" "pavm" {
-    ami = lookup(var.pavm_byol_ami_id, var.region)
-    #ami = lookup(var.pavm_payg_bun2_ami_id, var.region)
+    ami = lookup(var.pavm_byol_ami_id, var.aws_region)
+    #ami = lookup(var.pavm_payg_bun2_ami_id, var.aws_region)
     availability_zone = var.availability_zone
     tenancy = "default"
     ebs_optimized = false
@@ -266,7 +266,7 @@ resource "aws_network_interface" "untrust_eni" {
     tags = {
         Name = "PAVM_untrust_eni"
     }
-    attachment = {
+    attachment {
         instance = aws_instance.pavm.id
         device_index = 1
     }
@@ -292,7 +292,7 @@ resource "aws_network_interface" "trust_eni" {
     tags = {
         Name = "PAVM_trust_eni"
     }
-    attachment = {
+    attachment {
         instance = aws_instance.pavm.id
         device_index = 2
     }
