@@ -70,8 +70,8 @@ resource "aws_route" "mgmt-default-route" {
     destination_cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.pavm-igw.id
     depends_on = [
-        "aws_route_table.mgmt-routetable",
-        "aws_internet_gateway.pavm-igw"
+        aws_route_table.mgmt-routetable,
+        aws_internet_gateway.pavm-igw
     ]
 }
 
@@ -95,8 +95,8 @@ resource "aws_route" "untrust-default-route" {
     destination_cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.pavm-igw.id
     depends_on = [
-        "aws_route_table.untrust-routetable",
-        "aws_internet_gateway.pavm-igw"
+        aws_route_table.untrust-routetable,
+        aws_internet_gateway.pavm-igw
     ]
 }
 
@@ -197,7 +197,7 @@ resource "aws_route" "nat-route" {
     destination_cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.nat-igw.id
     depends_on = [
-        "aws_route_table.nat-routetable"
+        aws_route_table.nat-routetable
     ]
 }
 resource "aws_route_table_association" "nat-routetable-association" {
@@ -211,7 +211,7 @@ resource "aws_nat_gateway" "gw" {
     allocation_id = aws_eip.nat-eip.id
     subnet_id = aws_subnet.nat-subnet.id
     depends_on = [
-        "aws_internet_gateway.nat-igw"
+        aws_internet_gateway.nat-igw
     ]
 }
 resource "aws_route" "gw-route" {
@@ -278,7 +278,7 @@ resource "aws_eip" "untrust_eip" {
     network_interface = aws_network_interface.untrust_eni.id
     associate_with_private_ip = var.pavm_untrust_private_ip
     depends_on = [
-        "aws_internet_gateway.pavm-igw"
+        aws_internet_gateway.pavm-igw
     ]
 }
 
