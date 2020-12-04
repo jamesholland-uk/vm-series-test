@@ -103,7 +103,7 @@ resource "aws_route" "untrust-default-route" {
 # Associate Untrust route table to Untrust subnet
 resource "aws_route_table_association" "untrust-routetable-association" {
     subnet_id = aws_subnet.untrust-subnet.id
-    route_table_id = aws_route_table.untrust-routetable.id}
+    route_table_id = aws_route_table.untrust-routetable.id
 }
 
 # Trust route table
