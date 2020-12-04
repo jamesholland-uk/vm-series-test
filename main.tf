@@ -172,12 +172,12 @@ resource "aws_security_group" "default-security-gp" {
 }
 
 # VPC NAT Gateway
-resource "aws_internet_gateway" "nat-igw" {
+/*resource "aws_internet_gateway" "nat-igw" {
     vpc_id = aws_vpc.pavm-vpc.id
     tags = {
         Name = "NAT Internet Gateway"
     }
-}
+}*/
 resource "aws_subnet" "nat-subnet" {
     vpc_id = aws_vpc.pavm-vpc.id
     cidr_block = var.nat_igw__subnet_cidr_block
