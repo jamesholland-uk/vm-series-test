@@ -195,7 +195,7 @@ resource "aws_route_table" "nat-routetable" {
 resource "aws_route" "nat-route" {
     route_table_id = aws_route_table.nat-routetable.id
     destination_cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.nat-igw.id
+    gateway_id = aws_internet_gateway.pavm-igw.id
     depends_on = [
         aws_route_table.nat-routetable
     ]
@@ -211,7 +211,7 @@ resource "aws_nat_gateway" "gw" {
     allocation_id = aws_eip.nat-eip.id
     subnet_id = aws_subnet.nat-subnet.id
     depends_on = [
-        aws_internet_gateway.nat-igw
+        aws_internet_gateway.pavm-igw
     ]
 }
 resource "aws_route" "gw-route" {
