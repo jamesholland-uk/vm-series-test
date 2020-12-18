@@ -94,7 +94,7 @@ variable "pavm_byol_ami_id" {
 }
 
 variable "pavm_instance_type" {
-    default = "c4.xlarge"
+    default = "m4.xlarge"
 }
 
 variable "pavm_key_name" {
