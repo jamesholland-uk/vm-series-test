@@ -223,8 +223,8 @@ resource "aws_nat_gateway" "gw" {
 
 # Palo Alto Networks VM-Series
 resource "aws_instance" "pavm" {
-    ami = lookup(var.pavm_byol_ami_id, var.aws_region)
-    #ami = lookup(var.pavm_payg_bun2_ami_id, var.aws_region)
+    #ami = lookup(var.pavm_byol_ami_id, var.aws_region)
+    ami = lookup(var.pavm_payg_bun2_ami_id, var.aws_region)
     availability_zone = var.availability_zone
     tenancy = "default"
     ebs_optimized = false
