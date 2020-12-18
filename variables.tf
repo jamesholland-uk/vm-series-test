@@ -69,7 +69,7 @@ variable "pavm_payg_bun2_ami_id" {
         sa-east-1 = "ami-19810e75",
         us-west-2 = "ami-e4be4b84",
         us-east-2 = "ami-9ef3c5fb",
-        eu-west-2 = "ami-0cdffd70213400c5b"
+        eu-west-2 = "ami-0cdffd70213400c5b" // 9.0.6
     }
 }
 
@@ -88,7 +88,7 @@ variable "pavm_byol_ami_id" {
         sa-east-1 = "ami-1d860971",
         us-west-2 = "ami-e7be4b87",
         us-east-2 = "ami-11e1d774",
-        eu-west-2 = "ami-0a54e9baadee7dab6"
+        eu-west-2 = "ami-0a54e9baadee7dab6" // 9.0.6
     }
 
 }
