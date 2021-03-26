@@ -265,7 +265,7 @@ resource "aws_instance" "pavm" {
     #user_data = "vmseries-bootstrap-aws-s3bucket=${var.pavm_bootstrap_s3}"
     #iam_instance_profile = "bootstrap_s3_profile"
     metadata_options {
-        http_tokens = "required"
+        http_endpoint = "disabled"
     }
 }
 
