@@ -54,6 +54,9 @@ resource "aws_subnet" "trust-subnet" {
 # Internet Gateway (IGW)
 resource "aws_internet_gateway" "pavm-igw" {
     vpc_id = aws_vpc.pavm-vpc.id
+    tags = {
+        Name = "internet_gateway"
+    }
 }
 
 # Management route table
@@ -206,11 +209,17 @@ resource "aws_route_table_association" "nat-routetable-association" {
 }
 resource "aws_eip" "nat-eip" {
     vpc = true
+    tags = {
+        Name = "nat_eip"
+    }
 }
 resource "aws_nat_gateway" "gw" {
     allocation_id = aws_eip.nat-eip.id
     subnet_id = aws_subnet.nat-subnet.id
-    depends_on = [
+    tags = {
+        Name = "nat_gateway"
+    }
+  depends_on = [
         aws_internet_gateway.pavm-igw
     ]
 }
@@ -254,6 +263,9 @@ resource "aws_instance" "pavm" {
     # bootstrap
     //user_data = "vmseries-bootstrap-aws-s3bucket=${var.pavm_bootstrap_s3}"
     //iam_instance_profile = "bootstrap_s3_profile"
+    metadata_options {
+        http_tokens = "required"
+    }
 }
 
 # Untrust Interface
@@ -277,6 +289,9 @@ resource "aws_eip" "untrust_eip" {
     vpc = true
     network_interface = aws_network_interface.untrust_eni.id
     associate_with_private_ip = var.pavm_untrust_private_ip
+    tags = {
+        Name = "untrust_eip"
+    }
     depends_on = [
         aws_internet_gateway.pavm-igw
     ]
@@ -305,6 +320,9 @@ resource "aws_iam_instance_profile" "bootstrap_s3_profile" {
 resource "aws_iam_role" "bootstrap_s3_role" {
   name = "bootstrap_s3_role"
   path = "/"
+  tags = {
+        Name = "bootstrap_role"
+    }
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
