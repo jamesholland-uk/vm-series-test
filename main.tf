@@ -255,6 +255,7 @@ resource "aws_instance" "pavm" {
         volume_type = "gp2"
         volume_size = "65"
         delete_on_termination = true
+        encrypted = true
     }
 
     connection {
