@@ -237,12 +237,12 @@ resource "aws_instance" "pavm" {
     #ami = lookup(var.pavm_byol_ami_id, var.aws_region)
     availability_zone = var.availability_zone
     tenancy = "default"
-    ebs_optimized = false
+    ebs_optimized = true
     disable_api_termination = false
     instance_initiated_shutdown_behavior = "stop"
     instance_type = var.pavm_instance_type
     key_name = var.pavm_key_name
-    monitoring = true
+    monitoring = false
     vpc_security_group_ids = [ aws_security_group.default-security-gp.id ]
     subnet_id = aws_subnet.mgmt-subnet.id
     associate_public_ip_address = var.pavm_public_ip
