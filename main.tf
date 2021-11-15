@@ -287,17 +287,17 @@ resource "aws_network_interface" "untrust_eni" {
 }
 
 # EIP for Untrust Interface
-resource "aws_eip" "untrust_eip" {
-    vpc = true
-    network_interface = aws_network_interface.untrust_eni.id
-    associate_with_private_ip = var.pavm_untrust_private_ip
-    tags = {
-        Name = "untrust_eip"
-    }
-    depends_on = [
-        aws_internet_gateway.pavm-igw
-    ]
-}
+# resource "aws_eip" "untrust_eip" {
+#     vpc = true
+#     network_interface = aws_network_interface.untrust_eni.id
+#     associate_with_private_ip = var.pavm_untrust_private_ip
+#     tags = {
+#         Name = "untrust_eip"
+#     }
+#     depends_on = [
+#         aws_internet_gateway.pavm-igw
+#     ]
+# }
 
 # Trust Interface
 resource "aws_network_interface" "trust_eni" {
